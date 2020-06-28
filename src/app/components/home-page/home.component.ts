@@ -32,6 +32,9 @@ export class Home {
             .subscribe(
                 res => {
                     this.quiz = res['results'];
+                    this.quiz.forEach(x => {
+                        x.incorrect_answers.push(x.correct_answer);
+                    })
 
                     this.currentQuestion = this.quiz[0];
                     console.log('quizes:', res, this.quiz, this.currentQuestion);
@@ -43,7 +46,8 @@ export class Home {
         this.selectedOption = event;
         let answer = {
             index: this.questionIndex,
-            option: this.selectedOption
+            option: this.selectedOption,
+            question: this.currentQuestion.question
         }
 
         if (this.recorderdOption.findIndex(x => x.index == this.questionIndex) > -1)
@@ -52,10 +56,6 @@ export class Home {
             this.recorderdOption.push(answer)
 
         console.log('answer : ', this.recorderdOption);
-    }
-
-    submitQuiz() {
-
     }
 
     nextQuestion() {
@@ -88,5 +88,37 @@ export class Home {
         return this.questionIndex == 0 ? false : true;
     }
 
+    submitQuiz() {
+        if (confirm('Submit quiz?')) {
+
+            let correctAnswer = 0;
+
+            this.recorderdOption.forEach(x => {
+                // if (x.answer == this.quiz[x.index].correct_answer)
+                //     correctAnswer++;
+                this.quiz.forEach(q => {
+                    if (x.question == q.question) {
+                        console.log('ques matched:', x , q)
+                        if (x.option == q.correct_answer)
+                            correctAnswer++;
+                    }
+                })
+            })
+
+            alert(`your score : ${correctAnswer} / ${10}`)
+            this.resetQuizData();
+            this.ngOnInit();
+        }
+    }
+
+    resetQuizData(){
+        this.quiz = new Array<Quiz>();
+        this.currentQuestion = new Quiz();
+        this.currentQuestion.incorrect_answers = new Array<String>();
+
+        this.selectedOption = null;
+        this.recorderdOption = new Array<any>();
+        this.questionIndex = 0;    
+    }
 
 }
