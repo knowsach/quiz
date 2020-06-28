@@ -1,28 +1,27 @@
-<div class="custom-container">
-    <div class="background-image">
-        <div class="background-overlay">
-            <div class="row text-center">
-                <div class="col-12" style="margin-top: 4%;">
-                    <span class='heading-label'> Served </span>
-                </div>
-                <div class="col-12">
-                    <span class='sub-header text-center'> Find what to Eat | where to Dine </span>
-                </div>
-                <div class="col-12">
-                    <div class="row" style="padding: 10px;">
-                        <div class="col-md-8">
-                            <input class='col-md-6 home-search-box' placeholder="search by city name">
-                        </div>
-                        <div class="col-md-4">
-                            <button style="float: left;"> search </button>
-                        </div>
+<div class="container">
+    <div class="row pt-5">
+        <div class="col border shadow" style="height: 500px; width:800px">
+            <div class="row">
+
+                    <div class="col-md-12 quiz-outline" style="padding: 0%;">
+                      <div class="col-md-12" style="padding: 0%; border-bottom: 1px solid #CECECE;">
+                       <span class="question-index"> Quiz Question : {{questionIndex +1}} of 10 </span> <br>
+                        <label class="quiz-question"> {{currentQuestion.question}} </label>
+                      </div>
+                                  
+                      <mat-radio-group aria-label="Select an option"  [(ngModel)]="selectedOption" >
+                         <mat-radio-button *ngFor="let option of currentQuestion.incorrect_answers" [value]="option" (change)="optionChange(option)" 
+                         class="quiz-option col-md-12">{{option}}</mat-radio-button>
+                     </mat-radio-group>
                     </div>
-                </div>
+                 
+                    <div class="col-md-12 quiz-footer" style="background: none; padding-right: 0%;">
+                     <button class="btn submit-quiz-btn float-right" (click)="submitQuiz()" > Submit </button>
+                     <button [disabled]="!isNextBtnActive()" class="btn next-quiz-btn float-right" (click)="nextQuestion()" > Next Question </button>
+                     <button [disabled]="!isPreviousBtnActive()" class="btn prev-quiz-btn float-right" (click)="previousQuestion()"> Previous Question </button>
+                   </div>
+                 
             </div>
         </div>
     </div>
 </div>
-
-<!-- add a select field and a search box -->
-
-<!-- show some grid -->

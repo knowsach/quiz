@@ -13,41 +13,91 @@ body {
   margin: 0 !important;
 }
 
-.custom-container {
-  /* height: 60vh; */
-  height: 400px;
+
+.add-icon{
+  position: absolute;
+  right: 50px;
+  font-size: 50px;
+  bottom: 50px;
+  cursor: pointer;
 }
 
-.background-image {
-  background-image: url(https://b.zmtcdn.com/images/foodshots/cover/pizza3.jpg?output-format=webp);
-  background-size: cover;
-  height: 100%;
-  width: 100%;
+.add-icon :hover{
+  opacity: 0.6;
 }
 
-.background-overlay {
-  background: rgba(0, 0, 0, 0.4);
-  width: 100%;
-  height: 100%;
+
+.quizbtn{
+  box-shadow: none !important;
+  border:  #ff8500 !important;
+  background-color: #ff8500 !important;
 }
 
-.heading-label {
-  color: #fff;
-  font-weight: 800;
-  font-size: 50pt;
+.quizhead{
+  color: #949596; margin-left: 14px;
+  padding: 8px;
+  margin-top: -18px;  
 }
 
-.sub-header {
-  color: #fff;
+.quizheading{
+margin-top: -15px;
+  padding: 6px;
+  margin-left: 15px;
 }
 
-.home-search-box {
-  border: 1px solid lightgrey;
+.quiz-container{
+  width: 90%;
+  background: #fff;
+}
+
+.quiz-outline{
+  border: 1px solid #CECECE !important;
   border-radius: 5px;
-  padding: 2px;
-  float: right;
+}
+.quiz-question{
+  padding: 12px 25px;
+  font-weight: 450;
+  color: #808080 !important;
+  font-weight: 700;
 }
 
-::placeholder{
-    color: lightgrey;
+.quiz-option{
+  border-bottom: 1px solid #CECECE;
+  background: #fff !important;
+  padding: 15px 25px;
+  font-weight: 450;
+  color: #808080 !important;
+}
+
+.next-quiz-btn{
+  width: 180px;
+  margin: 15px 10px 0px 10px;
+  background: #569BF7 !important;
+  color: #fff !important;
+}
+
+.prev-quiz-btn{
+  width: 180px;
+  background: #fff;
+  color: #363636 !important;
+  font-weight: 600;
+  border: 1.5px solid #569BF7 !important;
+  margin: 15px 10px 0px 0px;
+}
+
+.submit-quiz-btn{
+  background: #01af16 !important;
+  color: #fff !important;
+  width: 180px;
+  margin-top: 15px;
+}
+
+.question-index{
+  padding-left: 25px;
+}
+
+.quiz-footer{
+  position: absolute !important;
+  bottom: 35px;
+  right: 20px;
 }
