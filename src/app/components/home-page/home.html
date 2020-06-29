@@ -14,6 +14,10 @@
                          class="quiz-option col-md-12">{{option}}</mat-radio-button>
                      </mat-radio-group>
                     </div>
+
+                    <div class="col-md-12" *ngIf="submitted">
+                        Answer : <span style="color: #01AF16;"> {{currentQuestion.correct_answer}}  </span> 
+                    </div>
                  
                     <div class="col-md-12 quiz-footer" style="background: none; padding-right: 0%;">
                      <button class="btn submit-quiz-btn float-right" (click)="submitQuiz()" > Submit </button>

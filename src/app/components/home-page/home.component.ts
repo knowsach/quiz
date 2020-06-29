@@ -14,6 +14,7 @@ export class Home {
     selectedOption: String = null;
     recorderdOption: any[] = new Array<any>();
     questionIndex: number = 0;
+    submitted: boolean = false;
 
     constructor(
         private http: HttpClient,
@@ -34,12 +35,31 @@ export class Home {
                     this.quiz = res['results'];
                     this.quiz.forEach(x => {
                         x.incorrect_answers.push(x.correct_answer);
+                        x.incorrect_answers = this.shuffle(x.incorrect_answers);
                     })
 
                     this.currentQuestion = this.quiz[0];
-                    console.log('quizes:', res, this.quiz, this.currentQuestion);
                 }
             )
+    }
+
+    shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
     }
 
     optionChange(event) {
@@ -55,7 +75,6 @@ export class Home {
         else
             this.recorderdOption.push(answer)
 
-        console.log('answer : ', this.recorderdOption);
     }
 
     nextQuestion() {
@@ -98,7 +117,6 @@ export class Home {
                 //     correctAnswer++;
                 this.quiz.forEach(q => {
                     if (x.question == q.question) {
-                        console.log('ques matched:', x , q)
                         if (x.option == q.correct_answer)
                             correctAnswer++;
                     }
@@ -106,19 +124,19 @@ export class Home {
             })
 
             alert(`your score : ${correctAnswer} / ${10}`)
-            this.resetQuizData();
-            this.ngOnInit();
+            this.submitted = true;
+            // this.resetQuizData();
         }
     }
 
-    resetQuizData(){
+    resetQuizData() {
         this.quiz = new Array<Quiz>();
         this.currentQuestion = new Quiz();
         this.currentQuestion.incorrect_answers = new Array<String>();
 
         this.selectedOption = null;
         this.recorderdOption = new Array<any>();
-        this.questionIndex = 0;    
+        this.questionIndex = 0;
     }
 
 }
